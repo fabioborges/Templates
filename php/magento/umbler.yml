@@ -1,0 +1,29 @@
+name: Magento
+description: Magento pre installed with the latest version.
+author: Umbler
+website: 'https://magento.com'
+logo: 'https://ps.w.org/woocommerce/assets/icon-128x128.png?rev=2075035'
+stack: php
+repository: 'https://www.url.com'
+
+publishing:
+  src_base: ./magento
+  src_publish: ./dist
+  webapp_root: ./public
+
+build_pipeline:
+  - step: php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+    description: Download the composer installer to the current directory
+  - step: php -r "if (hash_file('sha384', 'composer-setup.php') === '48e3236262b34d30969dca3c37281b3b4bbe3221bda826ac6a9a62d6444cdb0dcd0615698a5cbe587c3f0fe57a54d8f5') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+    description: Verify the composer installer SHA-384 which you can also cross-check here
+  - step: php composer-setup.php
+    description: Run the composer installer
+  - step: php -r "unlink('composer-setup.php');"
+    description: Remove the composer installer
+  - step: php composer.phar create-project --repository-url=https://repo.magento.com/ magento/project-community-edition ./magento
+    description: Install Magento
+env:
+  - var: asdas
+    description: asdasd
+  - var: sdfsdfs
+    description: sdfsdf

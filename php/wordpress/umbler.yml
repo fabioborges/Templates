@@ -1,0 +1,24 @@
+name: Wordpress
+description: Latest Wordpress installation.
+author: Umbler
+website: 'https://www.url.com'
+logo: 'https://www.url.cpom'
+stack: php
+repository: 'https://www.url.com'
+
+publishing:
+  src_base: ./wordpress
+  src_publish: ./wordpress
+  webapp_root: ./public
+
+build_pipeline:
+  - step: curl https://wordpress.org/latest.tar.gz --output wpfiles.tar.gz
+    description: Download the latest Wordpress source code.
+  - step: tar -xvzf wpfiles.tar.gz
+    description: Extracts wpfiles.tar.gz to wordpress folder
+
+env:
+  - var: asdas
+    description: asdasd
+  - var: sdfsdfs
+    description: sdfsdf
